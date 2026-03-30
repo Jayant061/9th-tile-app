@@ -1,0 +1,57 @@
+:host {
+  display: flex;
+  .grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 8px solid rgb(76, 76, 104);
+    gap: 6px;
+    box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 6px;
+    .row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 6px;
+
+      .cell {
+        all: unset;
+        box-sizing: border-box;
+        width: 8rem;
+        aspect-ratio: 1;
+        background-color: #e0d5b7;
+        color: #413f3d;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid whitesmoke;
+        position: relative;
+        border-radius: 8px;
+        box-shadow:
+          0px 4px 6px rgba(0, 0, 0, 0.3),
+          inset 0px 2px 0px rgba(255, 255, 255, 0.5),
+          inset 0px -2px 0px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.1s ease,
+          box-shadow 0.1s ease;
+        cursor: pointer;
+        &.zero {
+          visibility: hidden;
+          span{
+            display: none;
+          }
+        }
+        &:disabled {
+          cursor: not-allowed;
+        }
+        .value {
+          font-size: 2rem;
+          color: #413f3d;
+        }
+      }
+    }
+  }
+}

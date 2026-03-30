@@ -1,0 +1,11 @@
+<div class="grid">
+  @for (rowItems of gridData(); let rowIndex = $index; track rowIndex) {
+  <div class="row">
+    @for (item of rowItems;let colIndex = $index; track item) {
+    <button class="cell {{item === 0?'zero':''}}" (click)="handleMove($event,rowIndex,colIndex)" [disabled]="!isMoveValid(rowIndex,colIndex)">
+      <span class="value" >{{item}}</span>
+    </button>
+    }
+  </div>
+  }
+</div>
