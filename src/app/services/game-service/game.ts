@@ -7,31 +7,31 @@ import inputData from "../../../assets/inputs.json";
 export class Game {
   public readonly inputData = inputData;
 
-  public currentLevel = signal<number>(0);
+  public currentLevel = signal<number>(1);
 
   public totalMovesTaken = signal<number>(0);
   public totalTimeTaken = signal<number>(0);
 
   public gridData = signal<number[][]>([]);
 
-  public isGameOver = signal<boolean>(false);
+  public isGameWon = signal<boolean>(false);
 
-  public setGridData(level = 0) {
+  public setGridData(level = 1) {
     const gridSize = 3;
-    const puzzleArr = this.inputData.puzzles[level];
-    const gridData:number[][] = [];
-    for(let i = 0;i<gridSize;i++){
-      gridData.push(puzzleArr.grid.slice(i*gridSize,(i+1)*gridSize));
+    const puzzleArr = this.inputData.puzzles[level-1];
+    const gridData: number[][] = [];
+    for (let i = 0; i < gridSize; i++) {
+      gridData.push(puzzleArr.grid.slice(i * gridSize, (i + 1) * gridSize));
     }
     this.gridData.set(gridData);
   }
 
-  public getCurrentLevelMetaData = computed(()=>{
+  public getCurrentLevelMetaData = computed(() => {
     const level = this.currentLevel();
     return inputData.puzzles[level];
-  })
+  });
 
-  public resetMoveAndTime(){
+  public resetMoveAndTime() {
     this.totalMovesTaken.set(0);
     this.totalTimeTaken.set(0);
   }

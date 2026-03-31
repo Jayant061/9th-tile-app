@@ -4,30 +4,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 2rem;
   align-items: center;
   background-color: #1b263b;
   overflow: auto;
 
-  .stats-container{
-   
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    .stats{
+  .stats{
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        gap: 8rem;
+        gap: 4rem;
         padding: 1rem 2rem;
         .stat{
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            width: 10rem;
+            gap: 2rem;
             .key{
                 font-family: sans-serif;
                 font-weight: 400;
@@ -37,14 +30,52 @@
             .value{
                 font-family: sans-serif;
                 font-weight: 600;
-                font-size: 4rem;
+                font-size: 3rem;
                 color: #a18f5c;
             }
         }
     }
-    .actions{
+
+  .stats-container{
+    width: 100%;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .grid{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .best-score{
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    padding: 0.75rem;
+    .head{
+        font-family: sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
+        color: #E0D5B7;
+    }
+     }
+  .actions{
         width: 25rem;
-        padding-bottom: 1rem;
+        padding-top: 1rem;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -66,10 +97,9 @@
                 font-width: 700;
                 font-size: 1rem;
                 color: #fff;
-                background-color: #0f1520;
+                background-color: #6c6969;
             }
         }
     }
-  }
 
 }

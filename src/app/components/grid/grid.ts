@@ -30,13 +30,13 @@ export class Grid {
           this.validMove.set(val);
         });
         this.rustMethodService.igGameOver(gridData,this.gridSize).subscribe(val=>{
-          this.gameService.isGameOver.set(val);
+          this.gameService.isGameWon.set(val);
         })
     });
   }
 
   public isMoveValid(rowIndex: number, colIndex: number): boolean {
-    return this.validMove()[rowIndex][colIndex];
+    return this.validMove()[rowIndex][colIndex] && !this.gameService.isGameWon();
   }
 
   public handleMove(event: Event, rowIndex: number, colIndex: number) {

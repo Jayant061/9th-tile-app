@@ -1,25 +1,42 @@
 <div class="stats-container">
-    <div class="stats">
-        <div class="stat">
-            <span class="key">Moves:</span>
-            <span class="value">{{movesCount()}}</span>
-        </div>
-        <div class="stat">
-            <span class="key">Time:</span>
-            <span class="value">{{timeCount()}}</span>
-        </div>
-        <div class="stat">
-            <span class="key">Level</span>
-            <span class="value">{{currentLevel()}}</span>
-        </div>
-        <div class="stat">
-            <span class="key">Difficulty</span>
-            <span class="value">{{currentGameMetaData().difficulty}}</span>
-        </div>
+  <div class="stats">
+    <div class="stat">
+      <span class="key">Moves</span>
+      <span class="value">{{movesCount()}}</span>
     </div>
-    <div class="actions">
-        <button class="new-game" (click)="handleNewGame()">New Game</button>
-        <button class="reset" (click)="handleReset()">Reset</button>
+    <div class="stat">
+      <span class="key">Time</span>
+      <span class="value">{{timeCount()}}</span>
     </div>
+    <div class="stat">
+      <span class="key">Level</span>
+      <span class="value">{{currentLevel()}}</span>
+    </div>
+    <div class="stat">
+      <span class="key">Difficulty</span>
+      <span class="value">{{currentGameMetaData().difficulty}}</span>
+    </div>
+  </div>
 </div>
-<app-grid></app-grid>
+<div class="grid">
+  <app-grid></app-grid>
+  <div class="actions">
+    <button class="new-game" (click)="handleNewGame()">New Game</button>
+    <button class="reset" (click)="handleReset()">Reset</button>
+  </div>
+
+  <!-- <div class="best-score">
+  <span class="head">Best</span>
+  <div class="stats">
+    <div class="stat">
+      <span class="key">Time</span>
+      <span class="value">{{timeCount()}}</span>
+    </div>
+    <div class="stat">
+      <span class="key">Moves</span>
+      <span class="value">{{timeCount()}}</span>
+    </div>
+  </div>
+</div>
+</div> -->
+

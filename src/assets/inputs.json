@@ -1,54 +1,256 @@
 {
   "puzzles": [
-    { "difficulty": "Beginner", "moves": 1, "grid": [1, 2, 3, 4, 5, 0, 7, 8, 6] },
-    { "difficulty": "Beginner", "moves": 1, "grid": [1, 2, 3, 4, 0, 5, 7, 8, 6] },
-    { "difficulty": "Beginner", "moves": 2, "grid": [1, 2, 3, 4, 5, 6, 7, 0, 8] },
-    { "difficulty": "Beginner", "moves": 2, "grid": [1, 2, 3, 0, 4, 5, 7, 8, 6] },
-    { "difficulty": "Beginner", "moves": 3, "grid": [1, 2, 3, 4, 0, 6, 7, 5, 8] },
-    { "difficulty": "Beginner", "moves": 3, "grid": [0, 1, 3, 4, 2, 5, 7, 8, 6] },
-    { "difficulty": "Beginner", "moves": 4, "grid": [1, 2, 3, 4, 5, 6, 0, 7, 8] },
-    { "difficulty": "Beginner", "moves": 4, "grid": [1, 0, 2, 4, 5, 3, 7, 8, 6] },
-    { "difficulty": "Beginner", "moves": 5, "grid": [1, 2, 3, 4, 8, 5, 7, 0, 6] },
-    { "difficulty": "Beginner", "moves": 5, "grid": [1, 2, 0, 4, 5, 3, 7, 8, 6] },
-    { "difficulty": "Easy", "moves": 6, "grid": [1, 2, 3, 0, 7, 5, 4, 8, 6] },
-    { "difficulty": "Easy", "moves": 6, "grid": [1, 0, 3, 4, 2, 6, 7, 5, 8] },
-    { "difficulty": "Easy", "moves": 7, "grid": [4, 1, 3, 0, 2, 5, 7, 8, 6] },
-    { "difficulty": "Easy", "moves": 7, "grid": [1, 2, 3, 7, 4, 5, 0, 8, 6] },
-    { "difficulty": "Easy", "moves": 8, "grid": [1, 3, 0, 4, 2, 5, 7, 8, 6] },
-    { "difficulty": "Easy", "moves": 8, "grid": [4, 1, 3, 7, 2, 5, 8, 0, 6] },
-    { "difficulty": "Easy", "moves": 9, "grid": [4, 1, 2, 0, 5, 3, 7, 8, 6] },
-    { "difficulty": "Easy", "moves": 9, "grid": [1, 0, 2, 4, 6, 3, 7, 5, 8] },
-    { "difficulty": "Easy", "moves": 10, "grid": [4, 1, 2, 7, 5, 3, 0, 8, 6] },
-    { "difficulty": "Easy", "moves": 10, "grid": [1, 6, 2, 5, 3, 0, 4, 7, 8] },
-    { "difficulty": "Medium", "moves": 12, "grid": [4, 1, 2, 7, 0, 3, 8, 5, 6] },
-    { "difficulty": "Medium", "moves": 12, "grid": [0, 4, 2, 1, 5, 3, 7, 8, 6] },
-    { "difficulty": "Medium", "moves": 13, "grid": [4, 1, 2, 3, 0, 5, 6, 7, 8] },
-    { "difficulty": "Medium", "moves": 14, "grid": [4, 2, 3, 1, 5, 6, 7, 8, 0] },
-    { "difficulty": "Medium", "moves": 14, "grid": [1, 2, 6, 4, 0, 3, 7, 5, 8] },
-    { "difficulty": "Medium", "moves": 15, "grid": [2, 3, 5, 1, 0, 4, 7, 8, 6] },
-    { "difficulty": "Medium", "moves": 15, "grid": [1, 3, 5, 4, 2, 6, 7, 0, 8] },
-    { "difficulty": "Medium", "moves": 16, "grid": [5, 1, 2, 4, 0, 3, 7, 8, 6] },
-    { "difficulty": "Medium", "moves": 16, "grid": [4, 1, 2, 3, 5, 6, 7, 0, 8] },
-    { "difficulty": "Medium", "moves": 17, "grid": [5, 1, 2, 0, 4, 3, 7, 8, 6] },
-    { "difficulty": "Medium", "moves": 18, "grid": [0, 5, 2, 1, 4, 3, 7, 8, 6] },
-    { "difficulty": "Medium", "moves": 19, "grid": [5, 1, 2, 4, 3, 0, 7, 8, 6] },
-    { "difficulty": "Medium", "moves": 20, "grid": [2, 3, 1, 7, 0, 8, 6, 5, 4] },
-    { "difficulty": "Hard", "moves": 21, "grid": [5, 1, 2, 3, 4, 0, 6, 7, 8] },
-    { "difficulty": "Hard", "moves": 22, "grid": [0, 1, 2, 4, 5, 3, 7, 8, 6] },
-    { "difficulty": "Hard", "moves": 23, "grid": [5, 4, 7, 6, 0, 3, 2, 1, 8] },
-    { "difficulty": "Hard", "moves": 24, "grid": [4, 8, 2, 3, 6, 5, 1, 7, 0] },
-    { "difficulty": "Hard", "moves": 24, "grid": [1, 8, 2, 0, 4, 3, 7, 6, 5] },
-    { "difficulty": "Hard", "moves": 25, "grid": [6, 4, 7, 8, 5, 0, 3, 2, 1] },
-    { "difficulty": "Hard", "moves": 25, "grid": [5, 4, 7, 2, 3, 1, 0, 6, 8] },
-    { "difficulty": "Hard", "moves": 26, "grid": [0, 6, 7, 2, 8, 4, 3, 5, 1] },
-    { "difficulty": "Hard", "moves": 26, "grid": [2, 3, 5, 1, 8, 4, 7, 0, 6] },
-    { "difficulty": "Expert", "moves": 27, "grid": [8, 7, 6, 5, 4, 3, 2, 1, 0] },
-    { "difficulty": "Expert", "moves": 27, "grid": [2, 8, 7, 3, 6, 5, 4, 1, 0] },
-    { "difficulty": "Expert", "moves": 28, "grid": [5, 4, 0, 6, 1, 8, 7, 3, 2] },
-    { "difficulty": "Expert", "moves": 29, "grid": [8, 0, 6, 5, 4, 7, 2, 3, 1] },
-    { "difficulty": "Expert", "moves": 30, "grid": [8, 7, 6, 2, 0, 4, 1, 5, 3] },
-    { "difficulty": "Expert", "moves": 30, "grid": [6, 4, 7, 1, 3, 5, 8, 2, 0] },
-    { "difficulty": "Insane", "moves": 31, "grid": [8, 6, 7, 2, 5, 4, 3, 0, 1] },
-    { "difficulty": "Insane", "moves": 31, "grid": [6, 4, 7, 8, 5, 0, 3, 2, 1] }
+    {
+      "id": 1,
+      "difficulty": "Beginner",
+      "moves": 3,
+      "grid": [1, 2, 3, 0, 4, 5, 7, 8, 6]
+    },
+    {
+      "id": 2,
+      "difficulty": "Beginner",
+      "moves": 4,
+      "grid": [1, 2, 3, 5, 0, 6, 4, 7, 8]
+    },
+    {
+      "id": 3,
+      "difficulty": "Beginner",
+      "moves": 4,
+      "grid": [1, 3, 0, 4, 2, 5, 7, 8, 6]
+    },
+    {
+      "id": 4,
+      "difficulty": "Beginner",
+      "moves": 4,
+      "grid": [0, 1, 3, 4, 2, 5, 7, 8, 6]
+    },
+    {
+      "id": 5,
+      "difficulty": "Beginner",
+      "moves": 5,
+      "grid": [1, 2, 3, 5, 6, 0, 4, 7, 8]
+    },
+    {
+      "id": 6,
+      "difficulty": "Beginner",
+      "moves": 5,
+      "grid": [1, 3, 5, 4, 2, 0, 7, 8, 6]
+    },
+    {
+      "id": 7,
+      "difficulty": "Beginner",
+      "moves": 5,
+      "grid": [4, 1, 3, 0, 2, 5, 7, 8, 6]
+    },
+    {
+      "id": 8,
+      "difficulty": "Beginner",
+      "moves": 6,
+      "grid": [1, 2, 0, 5, 6, 3, 4, 7, 8]
+    },
+    {
+      "id": 9,
+      "difficulty": "Beginner",
+      "moves": 6,
+      "grid": [1, 3, 5, 4, 0, 2, 7, 8, 6]
+    },
+    {
+      "id": 10,
+      "difficulty": "Beginner",
+      "moves": 6,
+      "grid": [4, 1, 3, 2, 0, 5, 7, 8, 6]
+    },
+    {
+      "id": 11,
+      "difficulty": "Intermediate",
+      "moves": 7,
+      "grid": [1, 0, 2, 5, 6, 3, 4, 7, 8]
+    },
+    {
+      "id": 12,
+      "difficulty": "Intermediate",
+      "moves": 7,
+      "grid": [1, 3, 5, 0, 4, 2, 7, 8, 6]
+    },
+    {
+      "id": 13,
+      "difficulty": "Intermediate",
+      "moves": 7,
+      "grid": [4, 1, 3, 2, 5, 0, 7, 8, 6]
+    },
+    {
+      "id": 14,
+      "difficulty": "Intermediate",
+      "moves": 8,
+      "grid": [0, 1, 2, 5, 6, 3, 4, 7, 8]
+    },
+    {
+      "id": 15,
+      "difficulty": "Intermediate",
+      "moves": 8,
+      "grid": [0, 3, 5, 1, 4, 2, 7, 8, 6]
+    },
+    {
+      "id": 16,
+      "difficulty": "Intermediate",
+      "moves": 8,
+      "grid": [4, 1, 0, 2, 5, 3, 7, 8, 6]
+    },
+    {
+      "id": 17,
+      "difficulty": "Intermediate",
+      "moves": 9,
+      "grid": [3, 0, 5, 1, 4, 2, 7, 8, 6]
+    },
+    {
+      "id": 18,
+      "difficulty": "Intermediate",
+      "moves": 9,
+      "grid": [4, 0, 1, 2, 5, 3, 7, 8, 6]
+    },
+    {
+      "id": 19,
+      "difficulty": "Intermediate",
+      "moves": 10,
+      "grid": [3, 5, 0, 1, 4, 2, 7, 8, 6]
+    },
+    {
+      "id": 20,
+      "difficulty": "Intermediate",
+      "moves": 10,
+      "grid": [0, 4, 1, 2, 5, 3, 7, 8, 6]
+    },
+    {
+      "id": 21,
+      "difficulty": "Advanced",
+      "moves": 11,
+      "grid": [3, 5, 2, 1, 4, 0, 7, 8, 6]
+    },
+    {
+      "id": 22,
+      "difficulty": "Advanced",
+      "moves": 11,
+      "grid": [2, 4, 1, 0, 5, 3, 7, 8, 6]
+    },
+    {
+      "id": 23,
+      "difficulty": "Advanced",
+      "moves": 12,
+      "grid": [3, 5, 2, 1, 0, 4, 7, 8, 6]
+    },
+    {
+      "id": 24,
+      "difficulty": "Advanced",
+      "moves": 12,
+      "grid": [2, 4, 1, 5, 0, 3, 7, 8, 6]
+    },
+    {
+      "id": 25,
+      "difficulty": "Advanced",
+      "moves": 13,
+      "grid": [3, 5, 2, 0, 1, 4, 7, 8, 6]
+    },
+    {
+      "id": 26,
+      "difficulty": "Advanced",
+      "moves": 13,
+      "grid": [2, 4, 1, 5, 3, 0, 7, 8, 6]
+    },
+    {
+      "id": 27,
+      "difficulty": "Advanced",
+      "moves": 14,
+      "grid": [0, 5, 2, 3, 1, 4, 7, 8, 6]
+    },
+    {
+      "id": 28,
+      "difficulty": "Advanced",
+      "moves": 14,
+      "grid": [2, 4, 0, 5, 3, 1, 7, 8, 6]
+    },
+    {
+      "id": 29,
+      "difficulty": "Advanced",
+      "moves": 15,
+      "grid": [5, 0, 2, 3, 1, 4, 7, 8, 6]
+    },
+    {
+      "id": 30,
+      "difficulty": "Advanced",
+      "moves": 15,
+      "grid": [2, 0, 4, 5, 3, 1, 7, 8, 6]
+    },
+    {
+      "id": 31,
+      "difficulty": "Expert",
+      "moves": 16,
+      "grid": [5, 2, 0, 3, 1, 4, 7, 8, 6]
+    },
+    {
+      "id": 32,
+      "difficulty": "Expert",
+      "moves": 16,
+      "grid": [5, 2, 4, 3, 0, 1, 7, 8, 6]
+    },
+    {
+      "id": 33,
+      "difficulty": "Expert",
+      "moves": 16,
+      "grid": [0, 2, 4, 5, 3, 1, 7, 8, 6]
+    },
+    {
+      "id": 34,
+      "difficulty": "Expert",
+      "moves": 17,
+      "grid": [5, 2, 4, 3, 1, 0, 7, 8, 6]
+    },
+    {
+      "id": 35,
+      "difficulty": "Expert",
+      "moves": 17,
+      "grid": [5, 2, 4, 0, 3, 1, 7, 8, 6]
+    },
+    {
+      "id": 36,
+      "difficulty": "Expert",
+      "moves": 20,
+      "grid": [7, 2, 4, 5, 0, 6, 8, 3, 1]
+    },
+    {
+      "id": 37,
+      "difficulty": "Expert",
+      "moves": 20,
+      "grid": [7, 2, 4, 5, 6, 1, 8, 3, 0]
+    },
+    {
+      "id": 38,
+      "difficulty": "Expert",
+      "moves": 21,
+      "grid": [7, 2, 4, 5, 6, 0, 8, 3, 1]
+    },
+    {
+      "id": 39,
+      "difficulty": "Legend",
+      "moves": 30,
+      "grid": [8, 6, 7, 2, 5, 4, 3, 1, 0]
+    },
+    {
+      "id": 40,
+      "difficulty": "Legend",
+      "moves": 30,
+      "grid": [6, 4, 7, 8, 5, 1, 3, 2, 0]
+    },
+    {
+      "id": 41,
+      "difficulty": "Legend",
+      "moves": 31,
+      "grid": [8, 6, 7, 2, 5, 4, 3, 0, 1]
+    },
+    {
+      "id": 42,
+      "difficulty": "Legend",
+      "moves": 31,
+      "grid": [6, 4, 7, 8, 5, 0, 3, 2, 1]
+    }
   ]
 }
