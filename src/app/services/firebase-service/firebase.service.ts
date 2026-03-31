@@ -18,7 +18,7 @@ import { IUser } from "../../shared/auth.interface";
 })
 export class FirebaseService {
   private readonly firebaseConfig = {
-    apiKey: "AIzaSyD0cVD3-e19cjBbI01A6FbX8AzJKkMMo8Q",
+    apiKey: "",
     authDomain: "eight-puzzle-app.firebaseapp.com",
     projectId: "eight-puzzle-app",
     storageBucket: "eight-puzzle-app.firebasestorage.app",
