@@ -49,4 +49,10 @@ export class RustMethod {
   public igGameOver(gridData: number[][], gridSize: number) {
     return from(invoke<boolean>("is_game_over", { gridData, gridSize }));
   }
+
+  public getStars(optimalMoves:number,userMoves:number){
+    return from(
+      invoke<number>('get_stars',{optimalMoves,userMoves})
+    )
+  }
 }

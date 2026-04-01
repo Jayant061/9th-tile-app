@@ -1,0 +1,27 @@
+<div class="header">
+  <span class="head">CELEBRATION!</span>
+  <span class="subhead">Congratulations! You solved the puzzle!</span>
+</div>
+
+<div class="star-container">
+  @for (item of [1,2,3]; track item) { @if(item<=stars()){
+  <img src="assets/icons/FilledStar.svg" class="star-{{item}}" [alt]="" />
+  }@else {
+  <img src="assets/icons/HollowStar.svg" [alt]="" />
+  } }
+</div>
+<div class="stats">
+    <div class="stat">
+        <span class="key">Moves</span>
+        <span class="value">{{moves()}}</span>
+    </div>
+
+    <div class="stat">
+        <span class="key">Time</span>
+        <span class="value">{{time()}}</span>
+    </div>
+</div>
+<div class="actions">
+    <button class="new-game" (click)="newGame.emit()">New Game</button>
+    <button class="reset" (click)="playAgain.emit()">Play Again</button>
+</div>

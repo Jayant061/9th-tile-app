@@ -10,10 +10,11 @@ import {
 import { Grid } from "../grid/grid";
 import { Game } from "../../services/game-service/game";
 import confetti from "canvas-confetti";
+import { Celebration } from "../celebration/celebration";
 
 @Component({
   selector: "app-playstation",
-  imports: [Grid],
+  imports: [Grid,Celebration],
   templateUrl: "./playstation.html",
   styleUrl: "./playstation.css",
 })
@@ -38,6 +39,8 @@ export class Playstation implements OnInit {
 
   public currentLevel = computed(() => this.gameService.currentLevel());
 
+  public isGameWon = computed(()=>this.gameService.isGameWon());
+
   public currentGameMetaData = computed(() =>
     this.gameService.getCurrentLevelMetaData(),
   );
@@ -45,7 +48,6 @@ export class Playstation implements OnInit {
   public timerToken: number | null = null;
 
   ngOnInit(): void {
-    localStorage.clear();
     const level = JSON.parse(localStorage.getItem("level") ?? "1");
     this.gameService.currentLevel.set(level ?? 1);
     setTimeout(() => {

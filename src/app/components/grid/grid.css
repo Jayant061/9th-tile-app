@@ -7,7 +7,7 @@
     align-items: flex-start;
     border: 8px solid rgb(76, 76, 104);
     gap: 6px;
-    box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     padding: 6px;
     .row {

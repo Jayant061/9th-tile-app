@@ -23,6 +23,10 @@
   <div class="actions">
     <button class="new-game" (click)="handleNewGame()">New Game</button>
     <button class="reset" (click)="handleReset()">Reset</button>
+
+    @if(isGameWon()){
+      <app-celebration (playAgain)="handleReset()" (newGame)="handleNewGame()"></app-celebration>
+    }
   </div>
 
   <!-- <div class="best-score">
