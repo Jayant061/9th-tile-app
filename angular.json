@@ -6,7 +6,7 @@
     "analytics": false
   },
   "projects": {
-    "eight-puzzle": {
+    "the-ninth-tile": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -64,10 +64,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "eight-puzzle:build:production"
+              "buildTarget": "the-ninth-tile:build:production"
             },
             "development": {
-              "buildTarget": "eight-puzzle:build:development"
+              "buildTarget": "the-ninth-tile:build:development"
             }
           },
           "defaultConfiguration": "development"
