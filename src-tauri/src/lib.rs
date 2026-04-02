@@ -64,12 +64,11 @@ fn calulate_valid_moves(grid_data: Vec<Vec<i32>>, grid_size: usize) -> Vec<Vec<b
 #[tauri::command]
 fn get_stars(optimal_moves: i32, user_moves: i32) -> i32 {
     let ratio: f64 = (user_moves / optimal_moves) as f64;
-    let extra = user_moves - optimal_moves;
 
-    if ratio <= 1.2 || extra <= 2 {
+    if ratio <= 1.5{
         return 3;
     }
-    if ratio <= 1.8 || extra <= 6 {
+    if ratio <= 2.5 {
         return 2;
     };
     return 1;
@@ -88,7 +87,7 @@ fn check_if_move_valid(
 }
 
 #[tauri::command]
-fn is_game_over(grid_data: Vec<Vec<i32>>, grid_size: usize) -> bool {
+fn is_game_won(grid_data: Vec<Vec<i32>>, grid_size: usize) -> bool {
     let mut expected_number;
     for i in 0..grid_size {
         for j in 0..grid_size {
@@ -113,7 +112,7 @@ pub fn run() {
             handle_move_number,
             is_move_valid,
             calulate_valid_moves,
-            is_game_over,
+            is_game_won,
             get_stars
         ])
         .run(tauri::generate_context!())

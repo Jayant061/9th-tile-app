@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Game } from "../../services/game-service/game";
 import { RustMethod } from "../../services/rust-method-services/rust-method.service";
+import { debounceTime } from "rxjs";
 
 @Component({
   selector: "app-grid",
@@ -29,8 +30,14 @@ export class Grid {
         .subscribe((val) => {
           this.validMove.set(val);
         });
-        this.rustMethodService.igGameOver(gridData,this.gridSize).subscribe(val=>{
-          this.gameService.isGameWon.set(val);
+        let timeOutToken:number = 0;
+        this.rustMethodService.igGameWon(gridData,this.gridSize).pipe(debounceTime(500)).subscribe(val=>{
+          if(timeOutToken){
+            clearTimeout(timeOutToken);
+          }
+          timeOutToken = globalThis.setTimeout(()=>{
+            this.gameService.isGameWon.set(val);
+          },200)
         })
     });
   }
