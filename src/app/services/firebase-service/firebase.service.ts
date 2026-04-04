@@ -1,6 +1,5 @@
-import { effect, Injectable, signal } from "@angular/core";
+import { effect, inject, Injectable, signal } from "@angular/core";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,17 +7,24 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   User,
+  onAuthStateChanged,
+  updateProfile,
+  signOut,
 } from "firebase/auth";
 
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { IUser } from "../../shared/auth.interface";
+import { secrets } from "../../../assets/secrets";
+import { Router } from "@angular/router";
+import { IPlayerData } from "../../shared/interface";
 
 @Injectable({
   providedIn: "root",
 })
 export class FirebaseService {
+  private readonly router = inject(Router);
   private readonly firebaseConfig = {
-    apiKey: "",
+    apiKey: secrets.apiKey,
     authDomain: "eight-puzzle-app.firebaseapp.com",
     projectId: "eight-puzzle-app",
     storageBucket: "eight-puzzle-app.firebasestorage.app",
@@ -29,15 +35,21 @@ export class FirebaseService {
 
   // Initialize Firebase
   public app = initializeApp(this.firebaseConfig);
-  public analytics = getAnalytics(this.app);
+  // public analytics = getAnalytics(this.app);
   public auth = getAuth(this.app);
   public db = getFirestore();
 
-  public user = signal<User | null>(null);
+  public user = signal<User | null | undefined>(undefined);
 
   constructor() {
-    effect(() => {
-      this.user.set(this.auth.currentUser);
+    effect((cleanup) => {
+      const unsub = onAuthStateChanged(this.auth, (data) => {
+        this.user.set(data);
+        if (this.router.url.includes("auth")) {
+          this.router.navigate([""]);
+        }
+      });
+      cleanup(() => unsub());
     });
   }
 
@@ -51,7 +63,9 @@ export class FirebaseService {
         password,
       );
       this.user.set(userCredential.user);
-      await this.createUserProfile(userCredential.user.uid, data);
+      await updateProfile(userCredential.user, {
+        displayName: data.name,
+      });
     } catch (err) {
       const error = err as { code: string; message: string };
       console.error("Sign Up Error:", error.code, error.message);
@@ -102,6 +116,10 @@ export class FirebaseService {
     }
   };
 
+  public async logOut() {
+    await signOut(this.auth);
+  }
+
   public setToken(token: string) {
     localStorage.setItem("token", token);
   }
@@ -139,8 +157,31 @@ export class FirebaseService {
     if (docSnap.exists()) {
       return docSnap.data();
     } else {
-      console.log("No such profile!");
       return null;
     }
   };
+
+  public async setPlayerData(data: IPlayerData) {
+    const userId = this.user()?.uid;
+    if (!userId) return;
+    const playerDataRef = doc(this.db, "players", userId);
+    await setDoc(
+      playerDataRef,
+      { data, createdAt: new Date() },
+      { merge: true },
+    );
+  }
+
+  public async getPlayerData() {
+    const userId = this.user()?.uid;
+    if (!userId) return;
+    const playerDataRef = doc(this.db, "players", userId);
+    const playerDataDoc = await getDoc(playerDataRef);
+    const playerData = playerDataDoc.data() as {data:IPlayerData};
+    return playerData.data;
+  }
+
+  public isAuthenticated() {
+    return this.user();
+  }
 }

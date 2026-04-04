@@ -5,21 +5,22 @@ import {
   inject,
   OnInit,
   signal,
-  untracked,
 } from "@angular/core";
 import { Grid } from "../grid/grid";
 import { Game } from "../../services/game-service/game";
 import confetti from "canvas-confetti";
 import { Celebration } from "../celebration/celebration";
+import { FirebaseService } from "../../services/firebase-service/firebase.service";
 
 @Component({
   selector: "app-playstation",
-  imports: [Grid,Celebration],
+  imports: [Grid, Celebration],
   templateUrl: "./playstation.html",
   styleUrl: "./playstation.css",
 })
 export class Playstation implements OnInit {
   private readonly gameService = inject(Game);
+  public authService = inject(FirebaseService);
 
   public celebrationAnimationFrameId = 0;
 
@@ -39,7 +40,7 @@ export class Playstation implements OnInit {
 
   public currentLevel = computed(() => this.gameService.currentLevel());
 
-  public isGameWon = computed(()=>this.gameService.isGameWon());
+  public isGameWon = computed(() => this.gameService.isGameWon());
 
   public currentGameMetaData = computed(() =>
     this.gameService.getCurrentLevelMetaData(),
@@ -48,8 +49,6 @@ export class Playstation implements OnInit {
   public timerToken: number | null = null;
 
   ngOnInit(): void {
-    const level = JSON.parse(localStorage.getItem("level") ?? "1");
-    this.gameService.currentLevel.set(level ?? 1);
     setTimeout(() => {
       globalThis.alert(
         '"Start Puzzle: Move tiles by sliding them into the empty space. Arrange them from 1 to 8 to win."',
@@ -68,17 +67,7 @@ export class Playstation implements OnInit {
       const isSuccess = this.gameService.isGameWon();
       if (!isSuccess) return;
       clearInterval(this.timerToken ?? 0);
-
       this.showCelebration();
-
-      localStorage.setItem("level", JSON.stringify(this.currentLevel() + 1));
-      const bestScore = localStorage.getItem("best-score");
-      const time = untracked(() => this.gameService.totalTimeTaken());
-      const moves = untracked(() => this.movesCount());
-      if (!bestScore) {
-        this.bestScore.set({ time, moves });
-        localStorage.setItem("best-score", JSON.stringify({ time, moves }));
-      }
     });
   }
 
@@ -97,7 +86,7 @@ export class Playstation implements OnInit {
     if (this.gameService.isGameWon()) {
       this.gameService.currentLevel.update((prev) => prev + 1);
     } else {
-      this.gameService.setGridData(6);
+      this.gameService.currentLevel.set(1);
     }
     this.gameService.resetMoveAndTime();
     this.gameService.isGameWon.set(false);

@@ -1,5 +1,6 @@
 import { computed, Injectable, signal } from "@angular/core";
 import inputData from "../../../assets/inputs.json";
+import { IPlayerData } from "../../shared/interface";
 
 @Injectable({
   providedIn: "root",
@@ -7,8 +8,9 @@ import inputData from "../../../assets/inputs.json";
 export class Game {
   public readonly inputData = inputData;
 
-  public currentLevel = signal<number>(1);
+  public playerGameData = signal<IPlayerData|null>(null);
 
+  public currentLevel = signal<number>(1);
   public totalMovesTaken = signal<number>(0);
   public totalTimeTaken = signal<number>(0);
 
