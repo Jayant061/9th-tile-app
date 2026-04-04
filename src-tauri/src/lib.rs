@@ -65,7 +65,7 @@ fn calulate_valid_moves(grid_data: Vec<Vec<i32>>, grid_size: usize) -> Vec<Vec<b
 fn get_stars(optimal_moves: i32, user_moves: i32) -> i32 {
     let ratio: f64 = (user_moves / optimal_moves) as f64;
 
-    if ratio <= 1.5{
+    if ratio <= 1.5 {
         return 3;
     }
     if ratio <= 2.5 {
@@ -107,6 +107,7 @@ fn is_game_won(grid_data: Vec<Vec<i32>>, grid_size: usize) -> bool {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
             greet,
             handle_move_number,

@@ -1,16 +1,10 @@
-import {
-  Component,
-  computed,
-  effect,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
+import { Component, computed, effect, inject, OnInit } from "@angular/core";
 import { Grid } from "../grid/grid";
 import { Game } from "../../services/game-service/game";
 import confetti from "canvas-confetti";
 import { Celebration } from "../celebration/celebration";
 import { FirebaseService } from "../../services/firebase-service/firebase.service";
+import { confirm, message } from "@tauri-apps/plugin-dialog";
 
 @Component({
   selector: "app-playstation",
@@ -23,11 +17,6 @@ export class Playstation implements OnInit {
   public authService = inject(FirebaseService);
 
   public celebrationAnimationFrameId = 0;
-
-  public bestScore = signal<{ moves: number; time: number }>({
-    moves: 0,
-    time: 0,
-  });
 
   public movesCount = computed(() => this.gameService.totalMovesTaken());
   public timeCount = computed(() => {
@@ -46,15 +35,41 @@ export class Playstation implements OnInit {
     this.gameService.getCurrentLevelMetaData(),
   );
 
+  public bestScore = computed(() => {
+    const playerGameData = this.gameService.playerGameData();
+    const currentLevel = this.currentLevel();
+    const currentLevelBest = playerGameData?.eachLevelData.at(currentLevel);
+    console.log(currentLevel, currentLevelBest);
+    if (currentLevelBest) {
+      const time = currentLevelBest.time;
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
+
+      return {
+        time: `${minutes}:${seconds.toString().padStart(2, "0")}`,
+        move: currentLevelBest.move,
+      };
+    }
+    return null;
+  });
+
   public timerToken: number | null = null;
 
   ngOnInit(): void {
-    setTimeout(() => {
-      globalThis.alert(
-        '"Start Puzzle: Move tiles by sliding them into the empty space. Arrange them from 1 to 8 to win."',
-      );
+    setTimeout(async () => {
+      await this.showQuickguide();
       this.startTimer();
     }, 1000);
+  }
+
+  public async showQuickguide() {
+    await message(
+      "Start Puzzle: Move tiles by sliding them into the empty space. Arrange them from 1 to 8 to win.",
+      {
+        title: "The 9th Tile",
+        kind: "info", // Can be 'info', 'warning', or 'error'
+      },
+    );
   }
 
   constructor() {
@@ -86,11 +101,31 @@ export class Playstation implements OnInit {
     if (this.gameService.isGameWon()) {
       this.gameService.currentLevel.update((prev) => prev + 1);
     } else {
-      this.gameService.currentLevel.set(1);
+      this.startNewGame();
     }
     this.gameService.resetMoveAndTime();
     this.gameService.isGameWon.set(false);
     this.startTimer();
+  }
+
+  public async startNewGame() {
+    const shouldReset = await confirm(
+      "Starting a new game will erase your current progress. Do you want to continue?",
+      {
+        title: "The Ninth Tile",
+        kind: "warning",
+        cancelLabel: "Cancel",
+        okLabel: "Confirm",
+      },
+    );
+
+    if (shouldReset) {
+      this.gameService.currentLevel.set(1);
+      this.authService.setPlayerData({ level: 1, eachLevelData: [] });
+      this.authService.getPlayerData().then((data) => {
+        this.gameService.playerGameData.set(data ?? null);
+      });
+    }
   }
 
   public handleReset() {
