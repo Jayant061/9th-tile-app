@@ -13,3 +13,15 @@ export interface IPuzzleData {
   moves: number;
   difficulty: Difficulty;
 }
+
+export interface IPlayerData{
+  level:number;
+  eachLevelData: IEachLevelBest[]
+}
+
+export interface IEachLevelBest {
+  level:number;
+  time:number;
+  move:number
+  star:number
+}

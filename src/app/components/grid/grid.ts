@@ -56,6 +56,8 @@ export class Grid {
     this.rustMethodService
       .handleMoveNumber(gridData, rowIndex, colIndex, this.gridSize)
       .subscribe((val) => {
+        const audio = new Audio('assets/sound/tile-slide-sound.wav');
+        audio.play();
         this.gameService.gridData.set(val);
         this.gameService.totalMovesTaken.update((prev) => prev + 1);
       });

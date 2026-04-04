@@ -25,22 +25,25 @@
     <button class="reset" (click)="handleReset()">Reset</button>
 
     @if(isGameWon()){
-      <app-celebration (playAgain)="handleReset()" (newGame)="handleNewGame()"></app-celebration>
+    <app-celebration
+      (playAgain)="handleReset()"
+      (newGame)="handleNewGame()"
+    ></app-celebration>
     }
   </div>
-
-  <!-- <div class="best-score">
+</div>
+@if(bestScore()){
+<div class="best-score">
   <span class="head">Best</span>
   <div class="stats">
     <div class="stat">
       <span class="key">Time</span>
-      <span class="value">{{timeCount()}}</span>
+      <span class="value">{{bestScore()?.time}}</span>
     </div>
     <div class="stat">
       <span class="key">Moves</span>
-      <span class="value">{{timeCount()}}</span>
+      <span class="value">{{bestScore()?.move}}</span>
     </div>
   </div>
 </div>
-</div> -->
-
+}

@@ -14,7 +14,6 @@ export class GameFeasibilityChecked{
       puzzleData.forEach((puzzle) => {
         const moves = this.minMoves(puzzle.grid);
         movesFOrEachId[puzzle.id] = moves;
-        console.log(moves);
       });
       const data = puzzleData;
       data.sort((a, b) => movesFOrEachId[a.id] - movesFOrEachId[b.id]);
@@ -25,7 +24,7 @@ export class GameFeasibilityChecked{
         d.difficulty = this.getDifficulty(minMoves);
         return d;
       });
-      console.log(updatedData);
+      return updatedData;
     }
 
     public isSolvable(arr: number[]): boolean {

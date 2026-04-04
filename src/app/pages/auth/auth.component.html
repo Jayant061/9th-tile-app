@@ -1,0 +1,36 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="title">
+      {{ isLogin() ? "Login" : "Create Account" }}
+    </h2>
+
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      <!-- Username -->
+      @if (!isLogin()) {
+        <input type="text" placeholder="Username" formControlName="username" />
+      }
+
+      <!-- Email -->
+      <input type="email" placeholder="Email" formControlName="email" />
+
+      <!-- Password -->
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+
+      <button type="submit" [disabled]="isFormValid">
+        {{ isLogin() ? "Login" : "Sign Up" }}
+      </button>
+    </form>
+
+    <button class="toggle" (click)="toggleMode()">
+      {{
+        isLogin()
+          ? "Don't have an account? Sign up"
+          : "Already have an account? Login"
+      }}
+    </button>
+  </div>
+</div>
