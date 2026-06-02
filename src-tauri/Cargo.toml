@@ -5,6 +5,12 @@ description = "A Tauri App"
 authors = ["you"]
 edition = "2021"
 
+license = "MIT"
+
+repository = "https://github.com/Jayant061/9th-tile-app"
+homepage = "https://github.com/Jayant061/9th-tile-app"
+documentation = "https://github.com/Jayant061/9th-tile-app#readme"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
