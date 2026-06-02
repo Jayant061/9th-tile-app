@@ -17,21 +17,33 @@ import { IUser } from "../../shared/auth.interface";
 import { secrets } from "../../../assets/secrets";
 import { Router } from "@angular/router";
 import { IPlayerData } from "../../shared/interface";
+import { message } from "@tauri-apps/plugin-dialog";
 
 @Injectable({
   providedIn: "root",
 })
 export class FirebaseService {
   private readonly router = inject(Router);
-  private readonly firebaseConfig = {
-    apiKey: secrets.apiKey,
-    authDomain: "eight-puzzle-app.firebaseapp.com",
-    projectId: "eight-puzzle-app",
-    storageBucket: "eight-puzzle-app.firebasestorage.app",
-    messagingSenderId: "964805092994",
-    appId: "1:964805092994:web:aaa75ca9a9e115f613f69b",
-    measurementId: "G-TQ66NZ1C2N",
-  };
+  private get firebaseConfig() {
+    const {
+      apiKey,
+      appId,
+      authDomain,
+      measurementId,
+      messagingSenderId,
+      projectId,
+      storageBucket,
+    } = secrets;
+    return {
+      apiKey,
+      appId,
+      authDomain,
+      measurementId,
+      messagingSenderId,
+      projectId,
+      storageBucket,
+    };
+  }
 
   // Initialize Firebase
   public app = initializeApp(this.firebaseConfig);
@@ -66,10 +78,10 @@ export class FirebaseService {
       await updateProfile(userCredential.user, {
         displayName: data.name,
       });
+      this.showSuccess(`Welcome Mr. ${data.name}`);
     } catch (err) {
       const error = err as { code: string; message: string };
-      console.error("Sign Up Error:", error.code, error.message);
-      throw error;
+      this.showError(`Sign In Error: ${error.code} ${error.message}`);
     }
   };
 
@@ -85,10 +97,10 @@ export class FirebaseService {
       );
 
       this.user.set(userCredential.user);
+      this.showSuccess(`Welcome Mr. ${userCredential.user.displayName}`);
     } catch (err) {
       const error = err as { code: string; message: string };
-      console.error("Sign In Error:", error.code, error.message);
-      throw error;
+      this.showError(`Sign In Error: ${error.code} ${error.message}`);
     }
   };
 
@@ -111,8 +123,7 @@ export class FirebaseService {
       const errorCode = error.code;
       const errorMessage = error.message;
 
-      console.error(`Error ${errorCode}: ${errorMessage}`);
-      throw error;
+      this.showError(`Error ${errorCode}: ${errorMessage}`);
     }
   };
 
@@ -146,7 +157,9 @@ export class FirebaseService {
         { merge: true },
       ); // Merge: true prevents overwriting existing fields accidentally
     } catch (error) {
-      console.error("Error writing document: ", error);
+      this.showError(
+        "Something went wrong while saving your data. Please try again",
+      );
     }
   };
 
@@ -177,11 +190,24 @@ export class FirebaseService {
     if (!userId) return;
     const playerDataRef = doc(this.db, "players", userId);
     const playerDataDoc = await getDoc(playerDataRef);
-    const playerData = playerDataDoc.data() as {data:IPlayerData};
+    const playerData = playerDataDoc.data() as { data: IPlayerData };
     return playerData.data;
   }
 
   public isAuthenticated() {
     return this.user();
+  }
+
+  private async showError(content: string) {
+    await message(content, {
+      title: "The 9th Tile",
+      kind: "error", // Can be 'info', 'warning', or 'error'
+    });
+  }
+  private async showSuccess(content: string) {
+    await message(content, {
+      title: "The 9th Tile",
+      kind: "info", // Can be 'info', 'warning', or 'error'
+    });
   }
 }

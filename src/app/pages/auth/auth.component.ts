@@ -36,6 +36,8 @@ export class AuthComponent {
       const isLogin = this.isLogin();
       if (isLogin) {
         this.authForm.controls.username.disable();
+      } else if (!isLogin && this.authForm.controls.username.disabled) {
+        this.authForm.controls.username.enable();
       }
     });
   }
