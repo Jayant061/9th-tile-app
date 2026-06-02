@@ -1,6 +1,6 @@
 [package]
 name = "the-ninth-tile"
-version = "0.2.0"
+version = "1.0.0"
 description = "A Tauri App"
 authors = ["Jayant Thakur"]
 edition = "2024"
