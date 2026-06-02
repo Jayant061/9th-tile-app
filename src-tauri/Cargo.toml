@@ -2,8 +2,8 @@
 name = "the-ninth-tile"
 version = "0.2.0"
 description = "A Tauri App"
-authors = ["you"]
-edition = "2021"
+authors = "Jayant Thakur"
+edition = "2026"
 
 license = "MIT"
 
